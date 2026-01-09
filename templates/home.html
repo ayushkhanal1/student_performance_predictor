@@ -374,7 +374,7 @@
         // Add loading state to button on form submit
         document.getElementById('predictionForm').addEventListener('submit', function() {
             const btn = document.getElementById('predictBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculating...';
             btn.classList.add('btn-loading');
             btn.disabled = true;
         });
