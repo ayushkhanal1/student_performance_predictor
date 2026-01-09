@@ -10,7 +10,7 @@ from sklearn.compose import ColumnTransformer
 from src.exception import CustomException
 from src.logger import logging
 from dataclasses import dataclass
-
+from src.utils import save_objec  
 
 @dataclass    
 class DataTransformationConfig:
@@ -43,7 +43,7 @@ class DataTransformation:
                 steps=[
                     ('imputer', SimpleImputer(strategy='most_frequent')),
                     ('one hot encoder',OneHotEncoder()),  # Fill missing values with most frequent value
-                    ('scaler', StandardScaler())  # Standardize categorical features
+                    ('scaler', StandardScaler(with_mean=False))  # Standardize categorical features
                 ]
             )
 
@@ -101,7 +101,7 @@ class DataTransformation:
             train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]  # last column = target
             test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]    # last column = target
 
-            save_object(
+            save_objec(
                 file_path=self.data_transformation_config.preprocessor_obj_file_path,
                 obj=preprocessor_obj
             )
@@ -115,3 +115,10 @@ class DataTransformation:
         except Exception as e:
             logging.error("Error in initiate_data_transformation")
             raise CustomException(e, sys)
+
+
+if __name__ == "__main__":
+    data_transformation = DataTransformation()
+    train_path = os.path.join('artifacts', 'train.csv')
+    test_path = os.path.join('artifacts', 'test.csv')
+    data_transformation.initiate_data_transformation(train_path, test_path) 
