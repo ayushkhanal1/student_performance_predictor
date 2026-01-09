@@ -1,5 +1,5 @@
 import sys  # Import the sys module, which provides access to system-specific parameters and functions, like error details.
-
+from src.logger import logging  # Import the logging object from the logger module located in the src package.
 def error_message_detail(error, error_detail: sys):  # Define a function named error_message_detail that takes an error message and a sys object for error details.
     _, _, exc_tb = error_detail.exc_info()  # Get the exception traceback info from sys.exc_info(), which returns a tuple; we ignore the first two items and take the traceback object (exc_tb).
     file_name = exc_tb.tb_frame.f_code.co_filename  # Extract the filename where the error occurred from the traceback's frame.
@@ -14,3 +14,4 @@ class CustomException(Exception):  # Define a custom exception class that inheri
 
     def __str__(self):  # Define the __str__ method, which returns a string representation of the exception (used when printing or converting to string).
         return self.error_message  # Return the stored error message string.
+    

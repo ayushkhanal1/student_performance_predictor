@@ -1,7 +1,7 @@
 from setuptools import find_packages,setup  # Import necessary functions from setuptools for package setup.
 from typing import List  # Import List type for type hints.
 
-hyphen_dot_e="-e ."  # Define a string for the editable install flag.
+hyphen_dot_e="-e ."  
 def get_requirements(file_path:str) ->List[str]:  # Define a function to read requirements from a file.
     requirements=[]  # Initialize an empty list for requirements.
     with open(file_path) as temp_file:  # Open the file in read mode.
@@ -17,5 +17,5 @@ setup(  # Call the setup function to configure the package.
     author='Ayush',  # Author name.
     author_email='ayukhanalsh100@gmail.com',  # Author email.
     packages=find_packages(),  # Automatically find packages.
-    install_requires=get_requirements('requirements.txt')  # Dependencies from the function.
+    install_requires=get_requirements('requirements.txt')  # Dependencies from the function.    
 )
